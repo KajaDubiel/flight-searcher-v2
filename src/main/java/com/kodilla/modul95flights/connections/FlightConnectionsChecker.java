@@ -43,14 +43,13 @@ public class FlightConnectionsChecker implements ConnectionChecker {
         String arrival = flightRequest.getArrival();
         boolean foundFlight = false;
         String departures = "";
-        List<String> result = new ArrayList<>();
 
-        for(Map.Entry<String, ArrayList<String>> theMap: myMap.entrySet()){
+        for (Map.Entry<String, ArrayList<String>> theMap : myMap.entrySet()) {
             ArrayList<String> temporary = theMap.getValue();
-            for(String theArrival: temporary){
-                if(theArrival.equals(arrival)){
+            for (String theArrival : temporary) {
+                if (theArrival.equals(arrival)) {
                     //result.add(theMap.getKey());
-                    if(theMap.getKey().equals(departure)) {
+                    if (theMap.getKey().equals(departure)) {
                         departures = departures + " " + theMap.getKey();
                         foundFlight = true;
                     }
@@ -68,7 +67,50 @@ public class FlightConnectionsChecker implements ConnectionChecker {
     }
 
     public boolean checkConnectionWithOneChange(FlightRequest flightRequest) {
+        String departure = flightRequest.getDeparture();
+        String arrival = flightRequest.getArrival();
+        boolean foundFlight = false;
+        String departure2 = "";
+        String route = "";
 
-        return true;//temp
+        for(Map.Entry<String, ArrayList<String>> entry: myMap.entrySet()){
+            ArrayList<String> values = entry.getValue();
+            if(entry.getKey().equals(departure)){
+                for(String value: values){
+                    if(value.equals(arrival)){
+                        System.out.println("Direct flight available");
+                        foundFlight = true;
+                        route = departure + " " + arrival;
+                    } else {
+                        departure2 = value;
+
+                        for(Map.Entry<String, ArrayList<String>> entry2: myMap.entrySet()){
+                            ArrayList<String> values2 = entry.getValue();
+                            if(entry2.getKey().equals(departure2)){
+                                for(String value2: values2){
+                                    if(value2.equals(arrival)){
+                                        System.out.println("Found flight");
+                                        route = departure + " " + departure2 + " " + arrival;
+                                        foundFlight = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+
+            }
+        }
+
+        if(foundFlight){
+            System.out.println(route);
+            return true;
+        } else{
+            System.out.println("No flights");
+            return false;
+        }
+
     }
 }
