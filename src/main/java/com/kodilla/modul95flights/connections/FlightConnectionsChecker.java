@@ -4,7 +4,6 @@ import com.kodilla.modul95flights.requests.FlightRequest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -15,7 +14,6 @@ public class FlightConnectionsChecker implements ConnectionChecker {
 
     public boolean checkConnectionFromDeparture(FlightRequest flightRequest) {
         String departure = flightRequest.getDeparture();
-        String arrival = flightRequest.getArrival();
         boolean foundFlight = false;
         String arrivals = "";
 
@@ -48,7 +46,6 @@ public class FlightConnectionsChecker implements ConnectionChecker {
             ArrayList<String> temporary = theMap.getValue();
             for (String theArrival : temporary) {
                 if (theArrival.equals(arrival)) {
-                    //result.add(theMap.getKey());
                     if (theMap.getKey().equals(departure)) {
                         departures = departures + " " + theMap.getKey();
                         foundFlight = true;
@@ -73,41 +70,36 @@ public class FlightConnectionsChecker implements ConnectionChecker {
         String departure2 = "";
         String route = "";
 
-        for(Map.Entry<String, ArrayList<String>> entry: myMap.entrySet()){
+        for (Map.Entry<String, ArrayList<String>> entry : myMap.entrySet()) {
             ArrayList<String> values = entry.getValue();
-            if(entry.getKey().equals(departure)){
-                for(String value: values){
-                    if(value.equals(arrival)){
+            if (entry.getKey().equals(departure)) {
+                for (String value : values) {
+                    if (value.equals(arrival)) {
                         System.out.println("Direct flight available");
                         foundFlight = true;
                         route = departure + " " + arrival;
                     } else {
                         departure2 = value;
-
-                        for(Map.Entry<String, ArrayList<String>> entry2: myMap.entrySet()){
-                            ArrayList<String> values2 = entry.getValue();
-                            if(entry2.getKey().equals(departure2)){
-                                for(String value2: values2){
-                                    if(value2.equals(arrival)){
-                                        System.out.println("Found flight");
-                                        route = departure + " " + departure2 + " " + arrival;
-                                        foundFlight = true;
-                                    }
+                    }
+                    for (Map.Entry<String, ArrayList<String>> entry2 : myMap.entrySet()) {
+                        ArrayList<String> values2 = entry2.getValue();
+                        if (entry2.getKey().equals(departure2)) {
+                            for (String value2 : values2) {
+                                if (value2.equals(arrival)) {
+                                    route = departure + " " + departure2 + " " + arrival;
+                                    foundFlight = true;
                                 }
                             }
                         }
                     }
-
-
                 }
-
             }
         }
 
-        if(foundFlight){
-            System.out.println(route);
+        if (foundFlight) {
+            System.out.println("Found flight with one change, your schedule: " + route);
             return true;
-        } else{
+        } else {
             System.out.println("No flights");
             return false;
         }

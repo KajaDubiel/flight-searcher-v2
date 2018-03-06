@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FlightsMapCreator {
-        public HashMap<String, ArrayList<String>> createConnectionsMap() {
+    public HashMap<String, ArrayList<String>> createConnectionsMap() {
         ArrayList<String> arrivals = new ArrayList<>();
         arrivals.add("Warszawa");
         arrivals.add("Poznań");

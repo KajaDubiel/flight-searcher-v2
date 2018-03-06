@@ -9,7 +9,7 @@ import org.junit.Test;
 public class FlightConnectionsCheckerTestSuite {
 
     @Test
-    public void checkConnectionFromDepartureAvailableTest(){
+    public void checkConnectionFromDepartureAvailableTest() {
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
         FlightRequest flightRequest = new FlightRequest(user, "Katowice", "Warszawa");
@@ -23,7 +23,7 @@ public class FlightConnectionsCheckerTestSuite {
     }
 
     @Test
-    public void checkConnectionFromDepartureUnavailableTest(){
+    public void checkConnectionFromDepartureUnavailableTest() {
 
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
@@ -38,7 +38,7 @@ public class FlightConnectionsCheckerTestSuite {
     }
 
     @Test
-    public void checkConnectionToArrivalAvailableTest(){
+    public void checkConnectionToArrivalAvailableTest() {
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
         FlightRequest flightRequest = new FlightRequest(user, "Katowice", "Warszawa");
@@ -52,7 +52,7 @@ public class FlightConnectionsCheckerTestSuite {
     }
 
     @Test
-    public void checkConnectionToArrivalUnavailableTest(){
+    public void checkConnectionToArrivalUnavailableTest() {
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
         FlightRequest flightRequest = new FlightRequest(user, "Kraków", "Warszawa");
@@ -66,10 +66,10 @@ public class FlightConnectionsCheckerTestSuite {
     }
 
     @Test
-    public void checkConnectionWithOneChangeAvailableTest(){
+    public void checkConnectionWithOneChangeAvailableTest() {
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
-        FlightRequest flightRequest = new FlightRequest(user, "Warszawa", "Katowice");
+        FlightRequest flightRequest = new FlightRequest(user, "Wrocław", "Poznań");
         FlightConnectionsChecker flightConnectionsChecker = new FlightConnectionsChecker();
 
         //When
@@ -80,7 +80,7 @@ public class FlightConnectionsCheckerTestSuite {
     }
 
     @Test
-    public void checkConnectionWithOneChangeUnavailableTest(){
+    public void checkConnectionWithOneChangeUnavailableTest() {
         //Given
         User user = new User("Anna", "Nowak", "an@op.pl");
         FlightRequest flightRequest = new FlightRequest(user, "Katowice", "Szczecin");

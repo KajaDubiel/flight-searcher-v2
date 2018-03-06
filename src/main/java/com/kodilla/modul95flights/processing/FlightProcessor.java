@@ -20,9 +20,9 @@ public class FlightProcessor {
         this.connectionChecker = connectionChecker;
     }
 
-    public ReservationDto process(FlightRequest flightRequest){
+    public ReservationDto process(FlightRequest flightRequest) {
         boolean isReserved = connectionChecker.checkConnectionFromDeparture(flightRequest);
-        if(isReserved){
+        if (isReserved) {
             infoService.sendMessage(flightRequest.getUser());
             reservationRepository.createReservation(flightRequest);
             return new ReservationDto(flightRequest.getUser(), true);
